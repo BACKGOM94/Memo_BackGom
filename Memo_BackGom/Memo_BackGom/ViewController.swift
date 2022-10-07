@@ -20,6 +20,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    
+        
+        
         //네비게이션 세팅
         Nav_setting()
         
@@ -93,10 +96,10 @@ extension ViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let MainCellVC = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCellVC", for: indexPath) as! MainCellVC
         
-        print("indexPath.row = \(indexPath.row)")
-        print("indexPath.count = \(indexPath.count)")
-        print("mainCellTable.count = \(mainCellTable.count)")
-        print("----------------------------")
+//        print("indexPath.row = \(indexPath.row)")
+//        print("indexPath.count = \(indexPath.count)")
+//        print("mainCellTable.count = \(mainCellTable.count)")
+//        print("----------------------------")
         
         //점선 추가를 위한 함수사용
         MainCellVC.setLineDot()
@@ -121,6 +124,7 @@ extension ViewController : UICollectionViewDataSource {
 
 //Main_List의 동작을 만들어주기 위한 함수들
 extension ViewController : UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         
@@ -133,7 +137,11 @@ extension ViewController : UICollectionViewDelegate {
             self.show(MainInsertVC, sender: nil)
             
         }else {
+            let SubListVC = SubListVC(nibName: "SubListVC", bundle: nil)
             
+            SubListVC.mainData = mainCellTable[indexPath.row]
+            
+            self.show(SubListVC, sender: nil)
         }
     }
         
@@ -163,10 +171,8 @@ extension ViewController: UIGestureRecognizerDelegate {
                     let MainInsertVC = MainInsertVC(nibName: "MainInsertVC", bundle: nil)
                     
                     MainInsertVC.Flag = "update"
-                    print(mainCellTable[indexPath.row].mainID ?? "")
-                    MainInsertVC.MainID_C = mainCellTable[indexPath.row].mainID
-                    MainInsertVC.MainTitle_C = mainCellTable[indexPath.row].mainTitle
-                    MainInsertVC.IconImage_C = UIImage(data: mainCellTable[indexPath.row].mainImage!)
+                    MainInsertVC.ImageCheck = true
+                    MainInsertVC.selectedData = mainCellTable[indexPath.row]
                     
                     self.show(MainInsertVC, sender: nil)
                 }
@@ -179,3 +185,13 @@ extension ViewController: UIGestureRecognizerDelegate {
 
     
 
+extension UIViewController {
+    func hideKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}

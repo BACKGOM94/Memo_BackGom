@@ -25,13 +25,13 @@ class MainInsertVC: UIViewController {
     
     @IBOutlet weak var MainTitle: UITextField!
     
+    var selectedData: MainCellTable?
     var Flag = ""
-    var MainID_C : UUID?
-    var IconImage_C : UIImage?
-    var MainTitle_C : String?
     
     //메인컬러 1 (cccccc)
     let color_1 = UIColor(named: "MainColor_1")
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){view.endEditing(true)}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,13 +47,22 @@ class MainInsertVC: UIViewController {
         
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
     
     
     func showData(){
-        MainTitle.text = MainTitle_C
-        IconImage.image = IconImage_C
+        MainTitle.text = selectedData?.mainTitle
+        IconImage.image = UIImage(data: (selectedData?.mainImage)!)
     }
     
+    @IBAction func CancleButtonPressed(_ sender: Any) {
+        
+        navigationController?.popViewController(animated: true)
+        
+    }
     @IBAction func DeleteButtonPressed(_ sender: Any) {
 
         DeleteData()
@@ -66,15 +75,20 @@ class MainInsertVC: UIViewController {
         
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
+        guard let hasData = selectedData else { return }
+        
+        guard let hasUUID = hasData.mainID else { return }
+        
         let fetchRequest : NSFetchRequest<MainCellTable> = MainCellTable.fetchRequest()
         
-        fetchRequest.predicate = NSPredicate(format: "mainID = %@", MainID_C! as CVarArg)
+        fetchRequest.predicate = NSPredicate(format: "mainID = %@", hasUUID)
         
                 do {
                     let loadedData = try context.fetch(fetchRequest)
                     
                     if let loadFirstData = loadedData.first {
                         context.delete(loadFirstData)
+                        
                     }
                     
                 } catch {
@@ -88,29 +102,46 @@ class MainInsertVC: UIViewController {
             
             let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
             
-            let MainCellTable = NSEntityDescription.insertNewObject(forEntityName: "MainCellTable", into: context) as! MainCellTable
-            
-            MainCellTable.mainImage = self.IconImage.image?.jpegData(compressionQuality: 1.0)
-            MainCellTable.mainTitle = MainTitle.text
-            
-            if Flag == "New" {
-                MainCellTable.mainID = UUID()
-            } else if Flag == "update" {
-                MainCellTable.mainID = MainID_C
-            }
-            
-            do{
-        
+            if Flag == "new" {
+                let MainCellTable = NSEntityDescription.insertNewObject(forEntityName: "MainCellTable", into: context) as! MainCellTable
+                
+                MainCellTable.mainImage = self.IconImage.image?.jpegData(compressionQuality: 1.0)
+                MainCellTable.mainTitle = MainTitle.text
+                MainCellTable.mainID = UUID().uuidString
+                
+                do{
                     try context.save()
+                    
+                    navigationController?.popViewController(animated: true)
+                } catch let error {
+                    print(error.localizedDescription)
+                }
+            } else if Flag == "update" {
                 
-                
-                
-                navigationController?.popViewController(animated: true)
-                
-            } catch let error {
-                print(error.localizedDescription)
-            }
+                guard let hasData = selectedData else { return }
+
+                guard let hasUUID = hasData.mainID else { return }
+
+                let fetchRequest : NSFetchRequest<MainCellTable> = MainCellTable.fetchRequest()
+
+                fetchRequest.predicate = NSPredicate(format: "mainID = %@", hasUUID)
+
+                do{
+                    let loadData = try context.fetch(fetchRequest)
+
+                    loadData.first?.mainTitle = MainTitle.text
+                    loadData.first?.mainImage = self.IconImage.image?.jpegData(compressionQuality: 1.0)
+
+                    let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+
+                    appDelegate.saveContext()
+                    
+                    navigationController?.popViewController(animated: true)
+                }catch{
+                    print(error)
+                }
             
+            }
         }else {
             let alert = UIAlertController(title: "폴더명이나 사진을 추가해 주세요", message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "닫기", style: .cancel))
@@ -177,7 +208,7 @@ class MainInsertVC: UIViewController {
         DeleteButton.layer.borderColor = color_1?.cgColor
         DeleteButton.layer.backgroundColor = UIColor.white.cgColor
         
-        if Flag == "New" {
+        if Flag == "new" {
             InsertButton.setTitle("등록", for: .normal)
             DeleteButton.layer.isHidden = true
         } else if Flag == "update" {
@@ -201,6 +232,10 @@ extension MainInsertVC : PHPickerViewControllerDelegate {
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         
+        if results.count == 0 {
+            self.dismiss(animated: true)
+            return
+        }
         let itemProvider = results[0].itemProvider
         
         if itemProvider.canLoadObject(ofClass: UIImage.self) {

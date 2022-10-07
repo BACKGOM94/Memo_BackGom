@@ -20,6 +20,12 @@
 		F918469D28EBB5B300B9772E /* MainCellVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F918469C28EBB5B300B9772E /* MainCellVC.swift */; };
 		F97DC59A28EBD5A600262652 /* MainInsertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97DC59828EBD5A600262652 /* MainInsertVC.swift */; };
 		F97DC59B28EBD5A600262652 /* MainInsertVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97DC59928EBD5A600262652 /* MainInsertVC.xib */; };
+		F9A3D91E28EFE00200556171 /* SubInsertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A3D91C28EFE00200556171 /* SubInsertVC.swift */; };
+		F9A3D91F28EFE00200556171 /* SubInsertVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9A3D91D28EFE00200556171 /* SubInsertVC.xib */; };
+		F9AE3B4528F0767100AFF914 /* SubListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AE3B4328F0767100AFF914 /* SubListVC.swift */; };
+		F9AE3B4628F0767100AFF914 /* SubListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9AE3B4428F0767100AFF914 /* SubListVC.xib */; };
+		F9AE3B4928F07A4200AFF914 /* SubCellVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AE3B4728F07A4200AFF914 /* SubCellVC.swift */; };
+		F9AE3B4A28F07A4200AFF914 /* SubCellVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9AE3B4828F07A4200AFF914 /* SubCellVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +63,12 @@
 		F918469C28EBB5B300B9772E /* MainCellVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCellVC.swift; sourceTree = "<group>"; };
 		F97DC59828EBD5A600262652 /* MainInsertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInsertVC.swift; sourceTree = "<group>"; };
 		F97DC59928EBD5A600262652 /* MainInsertVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainInsertVC.xib; sourceTree = "<group>"; };
+		F9A3D91C28EFE00200556171 /* SubInsertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubInsertVC.swift; sourceTree = "<group>"; };
+		F9A3D91D28EFE00200556171 /* SubInsertVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubInsertVC.xib; sourceTree = "<group>"; };
+		F9AE3B4328F0767100AFF914 /* SubListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubListVC.swift; sourceTree = "<group>"; };
+		F9AE3B4428F0767100AFF914 /* SubListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubListVC.xib; sourceTree = "<group>"; };
+		F9AE3B4728F07A4200AFF914 /* SubCellVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCellVC.swift; sourceTree = "<group>"; };
+		F9AE3B4828F07A4200AFF914 /* SubCellVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubCellVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +121,12 @@
 			children = (
 				F918466928EBB38900B9772E /* AppDelegate.swift */,
 				F918466B28EBB38900B9772E /* SceneDelegate.swift */,
+				F9A3D91C28EFE00200556171 /* SubInsertVC.swift */,
+				F9A3D91D28EFE00200556171 /* SubInsertVC.xib */,
+				F9AE3B4328F0767100AFF914 /* SubListVC.swift */,
+				F9AE3B4428F0767100AFF914 /* SubListVC.xib */,
+				F9AE3B4728F07A4200AFF914 /* SubCellVC.swift */,
+				F9AE3B4828F07A4200AFF914 /* SubCellVC.xib */,
 				F918466D28EBB38900B9772E /* ViewController.swift */,
 				F97DC59828EBD5A600262652 /* MainInsertVC.swift */,
 				F97DC59928EBD5A600262652 /* MainInsertVC.xib */,
@@ -244,7 +262,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F97DC59B28EBD5A600262652 /* MainInsertVC.xib in Resources */,
+				F9AE3B4628F0767100AFF914 /* SubListVC.xib in Resources */,
 				F918467928EBB38B00B9772E /* LaunchScreen.storyboard in Resources */,
+				F9A3D91F28EFE00200556171 /* SubInsertVC.xib in Resources */,
+				F9AE3B4A28F07A4200AFF914 /* SubCellVC.xib in Resources */,
 				F918467628EBB38B00B9772E /* Assets.xcassets in Resources */,
 				F918467128EBB38900B9772E /* Main.storyboard in Resources */,
 			);
@@ -271,9 +292,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9AE3B4528F0767100AFF914 /* SubListVC.swift in Sources */,
 				F97DC59A28EBD5A600262652 /* MainInsertVC.swift in Sources */,
+				F9AE3B4928F07A4200AFF914 /* SubCellVC.swift in Sources */,
 				F918469D28EBB5B300B9772E /* MainCellVC.swift in Sources */,
 				F918466E28EBB38900B9772E /* ViewController.swift in Sources */,
+				F9A3D91E28EFE00200556171 /* SubInsertVC.swift in Sources */,
 				F918466A28EBB38900B9772E /* AppDelegate.swift in Sources */,
 				F918467428EBB38900B9772E /* Memo_BackGom.xcdatamodeld in Sources */,
 				F918466C28EBB38900B9772E /* SceneDelegate.swift in Sources */,
@@ -456,6 +480,7 @@
 				DEVELOPMENT_TEAM = CNHBSRK7K7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Memo_BackGom/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "아이콘 등록을 위해 갤러리에 접근합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -466,7 +491,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "BACKGOM.Memo-BackGom";
+				PRODUCT_BUNDLE_IDENTIFIER = "BACKGOM.Memo-BackGom94";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -484,6 +509,7 @@
 				DEVELOPMENT_TEAM = CNHBSRK7K7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Memo_BackGom/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "아이콘 등록을 위해 갤러리에 접근합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -494,7 +520,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "BACKGOM.Memo-BackGom";
+				PRODUCT_BUNDLE_IDENTIFIER = "BACKGOM.Memo-BackGom94";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
